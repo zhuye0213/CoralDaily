@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Coral.Data;
 using Coral.Models;
 
-namespace Coral.Pages.Users
+namespace Coral.Pages.User
 {
     public class DetailsModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace Coral.Pages.Users
             _context = context;
         }
 
-        public User User { get; set; } = default!;
+        public Account Account { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,14 +28,14 @@ namespace Coral.Pages.Users
                 return NotFound();
             }
 
-            var user = await _context.User.FirstOrDefaultAsync(m => m.Id == id);
-            if (user == null)
+            var account = await _context.Account.FirstOrDefaultAsync(m => m.Id == id);
+            if (account == null)
             {
                 return NotFound();
             }
             else
             {
-                User = user;
+                Account = account;
             }
             return Page();
         }

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Coral.Data;
 using Coral.Models;
 
-namespace Coral.Pages.Users
+namespace Coral.Pages.User
 {
     public class DeleteModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace Coral.Pages.Users
         }
 
         [BindProperty]
-        public User User { get; set; } = default!;
+        public Account Account { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,15 +29,15 @@ namespace Coral.Pages.Users
                 return NotFound();
             }
 
-            var user = await _context.User.FirstOrDefaultAsync(m => m.Id == id);
+            var account = await _context.Account.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (user == null)
+            if (account == null)
             {
                 return NotFound();
             }
             else
             {
-                User = user;
+                Account = account;
             }
             return Page();
         }
@@ -49,11 +49,11 @@ namespace Coral.Pages.Users
                 return NotFound();
             }
 
-            var user = await _context.User.FindAsync(id);
-            if (user != null)
+            var account = await _context.Account.FindAsync(id);
+            if (account != null)
             {
-                User = user;
-                _context.User.Remove(User);
+                Account = account;
+                _context.Account.Remove(Account);
                 await _context.SaveChangesAsync();
             }
 

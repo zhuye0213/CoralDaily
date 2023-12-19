@@ -7,6 +7,6 @@ using Coral.Models;
 
 namespace Coral.Data {
     public class CoralContext(DbContextOptions<CoralContext> options) : DbContext(options) {
-        public DbSet<Coral.Models.User> User { get; set; } = default!;
+        public DbSet<Coral.Models.Account> Account { get; set; } = default!;
     }
 }

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Coral.Data;
 using Coral.Models;
 
-namespace Coral.Pages.Users
+namespace Coral.Pages.User
 {
     public class EditModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace Coral.Pages.Users
         }
 
         [BindProperty]
-        public User User { get; set; } = default!;
+        public Account Account { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,12 +30,12 @@ namespace Coral.Pages.Users
                 return NotFound();
             }
 
-            var user =  await _context.User.FirstOrDefaultAsync(m => m.Id == id);
-            if (user == null)
+            var account =  await _context.Account.FirstOrDefaultAsync(m => m.Id == id);
+            if (account == null)
             {
                 return NotFound();
             }
-            User = user;
+            Account = account;
             return Page();
         }
 
@@ -48,7 +48,7 @@ namespace Coral.Pages.Users
                 return Page();
             }
 
-            _context.Attach(User).State = EntityState.Modified;
+            _context.Attach(Account).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +56,7 @@ namespace Coral.Pages.Users
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(User.Id))
+                if (!AccountExists(Account.Id))
                 {
                     return NotFound();
                 }
@@ -69,9 +69,9 @@ namespace Coral.Pages.Users
             return RedirectToPage("./Index");
         }
 
-        private bool UserExists(int id)
+        private bool AccountExists(int id)
         {
-            return _context.User.Any(e => e.Id == id);
+            return _context.Account.Any(e => e.Id == id);
         }
     }
 }

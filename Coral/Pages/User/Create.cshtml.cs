@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Coral.Data;
 using Coral.Models;
 
-namespace Coral.Pages.Users
+namespace Coral.Pages.User
 {
     public class CreateModel : PageModel
     {
@@ -25,7 +25,7 @@ namespace Coral.Pages.Users
         }
 
         [BindProperty]
-        public User User { get; set; } = default!;
+        public Account Account { get; set; } = default!;
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -35,7 +35,7 @@ namespace Coral.Pages.Users
                 return Page();
             }
 
-            _context.User.Add(User);
+            _context.Account.Add(Account);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
