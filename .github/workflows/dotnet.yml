@@ -16,19 +16,19 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: 设置 .NET
+    - name: 璁剧疆 .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 8.0.x
-    - name: 还原依赖
+    - name: 杩樺師渚濊禆
       run: dotnet restore
-    - name: 生成
+    - name: 鐢熸垚
       run: dotnet build --no-restore
-    - name: 运行测试用例
+    - name: 杩愯娴嬭瘯鐢ㄤ緥
       run: dotnet test --no-build --verbosity normal
-    - name: 发布
+    - name: 鍙戝竷
       run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
-    - name: 上传文件
+    - name: 涓婁紶鏂囦欢
       uses: actions/upload-artifact@v3
       with:
         name: .net-app
@@ -41,23 +41,26 @@ jobs:
       name: 'production'
 
     steps:
-    - name: 下载文件
+    - name: 涓嬭浇鏂囦欢
       uses: actions/download-artifact@v3
       with:
         name: .net-app  
-    - name: 传输到云主机
+    - name: 浼犺緭鍒颁簯涓绘満
       uses: easingthemes/ssh-deploy@main
       with:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         ARGS: "-rlgoDzvc -i --delete"
         SOURCE: ""
-        REMOTE_HOST: "service.rgsc.com.cn"
-        REMOTE_PORT: 9527
-        REMOTE_USER: root
+        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+        REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
+        REMOTE_USER: ${{ secrets.USERNAME }}
         TARGET: "/opt/CoralDaily/"
         #EXCLUDE: "/dist/, /node_modules/"
+        SCRIPT_AFTER: |
+          ls /opt/CoralDaily
+        
 
-    # - name: 重新运行
+    # - name: 閲嶆柊杩愯
     #   uses: appleboy/ssh-action@v1.0.0
     #   with:
     #     host: ${{ secrets.REMOTE_HOST }}
