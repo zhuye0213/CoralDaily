@@ -57,7 +57,7 @@ jobs:
         TARGET: "/opt/CoralDaily/"
         #EXCLUDE: "/dist/, /node_modules/"
         SCRIPT_AFTER: |
-          ls /opt/CoralDaily
+          ls /root
         
 
     # - name: 重新运行
