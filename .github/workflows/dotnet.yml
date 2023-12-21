@@ -19,19 +19,19 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Setup .NET
+    - name: 设置 .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 8.0.x
-    - name: Restore dependencies
+    - name: 还原依赖
       run: dotnet restore
-    - name: Build
+    - name: 生成
       run: dotnet build --no-restore
-    - name: Test
+    - name: 运行测试用例
       run: dotnet test --no-build --verbosity normal
-    - name: dotnet publish
+    - name: 发布
       run: dotnet publish -c Release -o ${{env.APP_PATH}}
-    - name: Upload artifact for deployment job
+    - name: 上传文件
       uses: actions/upload-artifact@v3
       with:
         name: .net-app
@@ -44,12 +44,13 @@ jobs:
       name: 'production'
 
     steps:
-    - name: Download artifact from build job
+    - name: 下载文件
       uses: actions/download-artifact@v3
       with:
         name: .net-app
+        path: ${{env.APP_PATH}}
       
-    - name: Deploy to Server
+    - name: 传输到云主机
       uses: easingthemes/ssh-deploy@main
       with:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -65,7 +66,7 @@ jobs:
         SCRIPT_AFTER: |
           echo $RSYNC_STDOUT
 
-    - name: executing remote ssh commands using ssh key
+    - name: 重新运行
       uses: appleboy/ssh-action@v1.0.0
       with:
         host: ${{ secrets.REMOTE_HOST }}
