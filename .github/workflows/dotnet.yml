@@ -57,7 +57,9 @@ jobs:
         TARGET: "/opt/CoralDaily/"
         #EXCLUDE: "/dist/, /node_modules/"
         SCRIPT_AFTER: |
-          ls /root
+          whoami
+          ls -al
+          echo $RSYNC_STDOUT
         
 
     # - name: 重新运行
