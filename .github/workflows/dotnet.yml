@@ -60,10 +60,16 @@ jobs:
         #EXCLUDE: "/dist/, /node_modules/"
         SCRIPT_BEFORE: |
           whoami
+          echo "11111"
           ls -al
+          echo "11111"
+          pwd
+          echo "11111"
+          ls -al /home/runner/work/CoralDaily
+          echo "11111"
+          ls -al /home/runner/work/CoralDaily/CoralDaily/
         SCRIPT_AFTER: |
-          whoami
-          ls -al
+          whoami 
           echo $RSYNC_STDOUT
 
     - name: executing remote ssh commands using ssh key
