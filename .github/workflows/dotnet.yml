@@ -47,6 +47,15 @@ jobs:
       with:
         name: .net-app
 
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@v0.1.10
+      with:
+        host: ${{ secrets.REMOTE_HOST }}
+        username: ${{ secrets.REMOTE_USER }}
+        proxy_key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: ${{ secrets.REMOTE_PORT }}
+        script: whoami
+
     - name: Deploy to Server
       uses: easingthemes/ssh-deploy@main
       with:
