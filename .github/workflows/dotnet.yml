@@ -54,7 +54,6 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.REMOTE_PORT }}
-        passphrase: "z19850213"
         script: whoami
       
     - name: Deploy to Server
