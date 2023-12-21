@@ -58,6 +58,13 @@ jobs:
         REMOTE_USER: root
         TARGET: "/opt/CoralDaily/"
         #EXCLUDE: "/dist/, /node_modules/"
+        SCRIPT_BEFORE: |
+          whoami
+          ls -al
+        SCRIPT_AFTER: |
+          whoami
+          ls -al
+          echo $RSYNC_STDOUT
 
     - name: executing remote ssh commands using ssh key
       uses: appleboy/ssh-action@v1.0.0
