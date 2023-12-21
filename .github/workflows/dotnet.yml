@@ -9,9 +9,6 @@ on:
   pull_request:
     branches: [ "main" ]
 
-env:
-  APP_PATH: /usr/share/dotnet/Publish/
-
 jobs:
   build:
 
@@ -30,12 +27,12 @@ jobs:
     - name: 运行测试用例
       run: dotnet test --no-build --verbosity normal
     - name: 发布
-      run: dotnet publish -c Release -o ${{env.APP_PATH}}
+      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
     - name: 上传文件
       uses: actions/upload-artifact@v3
       with:
         name: .net-app
-        path: ${{env.APP_PATH}}
+        path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy:
     runs-on: ubuntu-latest
@@ -48,21 +45,24 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: .net-app
-        path: ${{env.APP_PATH}}
+    - name: 显示下载文件
+      run: ls -R
+
       
     - name: 传输到云主机
       uses: easingthemes/ssh-deploy@main
       with:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         ARGS: "-rlgoDzvc -i --delete"
-        SOURCE: ${{env.APP_PATH}}
+        SOURCE: ${GITHUB_WORKSPACE}
         REMOTE_HOST: "service.rgsc.com.cn"
         REMOTE_PORT: 9527
         REMOTE_USER: root
         TARGET: "/opt/CoralDaily/"
         #EXCLUDE: "/dist/, /node_modules/"
         SCRIPT_BEFORE: |
-          ls -al ${{env.APP_PATH}}
+          echo ${GITHUB_WORKSPACE}
+          ls -al 
         SCRIPT_AFTER: |
           echo $RSYNC_STDOUT
 
