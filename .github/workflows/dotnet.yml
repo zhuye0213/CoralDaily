@@ -52,7 +52,7 @@ jobs:
       with:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         ARGS: "-rlgoDzvc -i --delete"
-        SOURCE: "./"
+        SOURCE: ""
         REMOTE_HOST: "service.rgsc.com.cn"
         REMOTE_PORT: 9527
         REMOTE_USER: root
