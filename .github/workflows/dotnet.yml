@@ -53,12 +53,12 @@ jobs:
         SOURCE: ""
         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
         REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
-        REMOTE_USER: ${{ secrets.USERNAME }}
+        REMOTE_USER: ${{ secrets.REMOTE_USER }}
         TARGET: "/opt/CoralDaily/"
         #EXCLUDE: "/dist/, /node_modules/"
         SCRIPT_AFTER: |
           whoami
-          ls -al
+          ls -al /opt/CoralDaily/
           echo $RSYNC_STDOUT
         
 
