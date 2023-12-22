@@ -56,10 +56,8 @@ jobs:
         REMOTE_USER: ${{ secrets.REMOTE_USER }}
         TARGET: "/opt/CoralDaily/"
         #EXCLUDE: "/dist/, /node_modules/"
-        SCRIPT_AFTER: |
-          ls -al /opt/
-          echo 1
+        SCRIPT_AFTER: |          
           echo $RSYNC_STDOUT
-          echo 2
+          systemctl restart coraldaily
     - name: 发布完成
       run: echo 发布完成
