@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Coral.Data;
 using Microsoft.Data.SqlClient;
 using Coral.Models;
@@ -23,7 +22,6 @@ var app = builder.Build();
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;
 SeedData.Initialize(services);
-
 
 // ≈‰÷√Httpπ‹µ¿
 if (!app.Environment.IsDevelopment()) {
