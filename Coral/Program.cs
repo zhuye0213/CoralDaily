@@ -18,7 +18,7 @@ builder.Services.AddAutoMapper(typeof(CustomProfile));
 
 var app = builder.Build();
 
-//种子数据1
+//种子数据123
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;
 SeedData.Initialize(services);
