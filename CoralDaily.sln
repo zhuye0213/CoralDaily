@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34310.174
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coral", "Coral\Coral.csproj", "{1D0A1602-AC24-4218-B899-5D17FA8161EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coral", "Coral\Coral.csproj", "{1D0A1602-AC24-4218-B899-5D17FA8161EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoralWeb", "CoralWeb\CoralWeb.csproj", "{740077E0-FC65-43C0-B4AD-06748F9A00BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{1D0A1602-AC24-4218-B899-5D17FA8161EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D0A1602-AC24-4218-B899-5D17FA8161EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D0A1602-AC24-4218-B899-5D17FA8161EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{740077E0-FC65-43C0-B4AD-06748F9A00BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{740077E0-FC65-43C0-B4AD-06748F9A00BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{740077E0-FC65-43C0-B4AD-06748F9A00BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{740077E0-FC65-43C0-B4AD-06748F9A00BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
